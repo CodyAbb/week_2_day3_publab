@@ -31,11 +31,12 @@ class Pub
   end
 
   def sell_drink_to_customer(drink, customer)
-    new_drunk_level = customer.drunkenness += drink.alcohol_level
+    new_drunk_level = (customer.drunkenness + drink.alcohol_level)
     if check_for_drink(drink.name) && customer.can_afford_drink(drink) && customer.age >= 18 && new_drunk_level <= 10
       sell_drink(drink)
       increase_till_cash(drink)
       customer.pay_for_drink(drink)
+      customer.increase_drunkenness(drink)
     end
   end
 

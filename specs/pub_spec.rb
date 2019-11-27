@@ -79,6 +79,7 @@ class PubTest < Minitest::Test
     assert_equal(3, @pub2.check_stock_level)
     assert_equal(400, @pub2.till)
     assert_equal(10, @customer3.wallet)
+    assert_equal(0, @customer3.drunkenness)
   end
 
   def test_do_not_sell_to_customer_with_over_10_drunkenness
@@ -88,6 +89,17 @@ class PubTest < Minitest::Test
     assert_equal(1, @pub3.check_stock_level)
     assert_equal(200, @pub3.till)
     assert_equal(50, @customer.wallet)
+  end
+
+  def test_sell_drink_to_customer_if_under_10_drunkenness
+    @pub2.sell_drink_to_customer(@drink1, @customer)
+    @pub2.sell_drink_to_customer(@drink2, @customer)
+    @pub2.sell_drink_to_customer(@drink3, @customer)
+
+    assert_equal(0, @pub2.check_stock_level)
+    assert_equal(409, @pub2.till)
+    assert_equal(41, @customer.wallet)
+    assert_equal(6, @customer.drunkenness)
   end
 
 end
