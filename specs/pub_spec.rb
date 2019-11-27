@@ -14,11 +14,13 @@ class PubTest < Minitest::Test
     @drink1 = Drink.new("Beer", 2, 1)
     @drink2 = Drink.new("Wine", 3, 2)
     @drink3 = Drink.new("Gin", 4, 3)
+    @drink4 = Drink.new("Tequila", 5, 11)
     @customer = Customer.new("Alex", 50, 30)
     @customer2 = Customer.new("Katie", 1, 16)
     @customer3 = Customer.new("Harrison", 10, 15)
 
     @pub2 = Pub.new("Chanter", 400, [@drink1, @drink2, @drink3])
+    @pub3 = Pub.new("Caley PictureHouse", 200, [@drink4])
 
   end
 
@@ -79,13 +81,13 @@ class PubTest < Minitest::Test
     assert_equal(10, @customer3.wallet)
   end
 
-  # def test_do_not_sell_to_customer_with_over_10_drunkenness
-  #   drink = Drink.new("Tequila", 8, 11)
-  #   @pub2.sell_drink_to_customer(drink, @customer)
-  #
-  #   assert_equal(3, @pub2.check_stock_level)
-  #   assert_equal(400, @pub2.till)
-  #   assert_equal(10, @customer.wallet)
-  # end
+  def test_do_not_sell_to_customer_with_over_10_drunkenness
+
+    @pub3.sell_drink_to_customer(@drink4, @customer)
+
+    assert_equal(1, @pub3.check_stock_level)
+    assert_equal(200, @pub3.till)
+    assert_equal(50, @customer.wallet)
+  end
 
 end

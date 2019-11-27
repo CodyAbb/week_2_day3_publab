@@ -1,6 +1,7 @@
 class Customer
 
-  attr_reader :name, :wallet, :age, :drunkenness
+  attr_reader :name, :wallet, :age
+  attr_accessor :drunkenness
 
   def initialize(name, wallet, age)
     @name = name
