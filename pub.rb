@@ -9,14 +9,21 @@ class Pub
   end
 
 
-  def check_for_drink(search_drink)
+  def check_stock_level
+    return @drinks.length
+  end
 
+  def check_for_drink(search_drink)
     for drink in @drinks
       if drink.name == search_drink
         return true
       end
     end
     return false
+  end
+
+  def sell_drink(drink)
+    @drinks.delete(drink)
   end
 
 end

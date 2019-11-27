@@ -11,6 +11,7 @@ class Customer
     if @wallet >= drink.price
         return true
     end
+    return false
   end
 
 end
