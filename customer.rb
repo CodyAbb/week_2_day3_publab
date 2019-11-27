@@ -14,4 +14,8 @@ class Customer
     return false
   end
 
+  def pay_for_drink(drink)
+    @wallet -= drink.price
+  end
+
 end

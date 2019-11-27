@@ -22,6 +22,10 @@ class Pub
     return false
   end
 
+  def increase_till_cash(drink)
+    @till += drink.price
+  end
+
   def sell_drink(drink)
     @drinks.delete(drink)
   end

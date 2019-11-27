@@ -50,9 +50,18 @@ class PubTest < Minitest::Test
   end
 
   def test_check_drink_removed
-
     @pub2.sell_drink(@drink3)
     assert_equal(2, @pub2.check_stock_level)
+  end
+
+  def test_check_till_increase
+    @pub2.increase_till_cash(@drink3)
+    assert_equal(404, @pub2.till)
+  end
+
+  def test_decreases_customer_wallet_by_drink_price
+    @customer.pay_for_drink(@drink1)
+    assert_equal(48, @customer.wallet)
   end
 
 end
