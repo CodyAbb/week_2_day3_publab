@@ -31,11 +31,13 @@ class Pub
   end
 
   def sell_drink_to_customer(drink, customer)
-    if check_for_drink(drink) == true && customer.can_afford_drink(drink) == true
+    if (check_for_drink(drink.name) && customer.can_afford_drink(drink))
       sell_drink(drink)
       increase_till_cash(drink)
       customer.pay_for_drink(drink)
     end
   end
+
+
 
 end
