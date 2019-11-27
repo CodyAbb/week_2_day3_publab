@@ -11,11 +11,12 @@ class PubTest < Minitest::Test
   def setup
     @pub  = Pub.new("4042", 350)
 
-    @drink1 = Drink.new("Beer", 2)
-    @drink2 = Drink.new("Wine", 3)
-    @drink3 = Drink.new("Gin", 4)
-    @customer = Customer.new("Alex", 50)
-    @customer2 = Customer.new("Katie", 1)
+    @drink1 = Drink.new("Beer", 2, 1)
+    @drink2 = Drink.new("Wine", 3, 2)
+    @drink3 = Drink.new("Gin", 4, 3)
+    @customer = Customer.new("Alex", 50, 30)
+    @customer2 = Customer.new("Katie", 1, 16)
+    @customer3 = Customer.new("Harrison", 10, 15)
 
     @pub2 = Pub.new("Chanter", 400, [@drink1, @drink2, @drink3])
 
@@ -64,11 +65,27 @@ class PubTest < Minitest::Test
     assert_equal(48, @customer.wallet)
   end
 
-  def test_sell_drink_to_customer
+  def test_sell_drink_to_customer_if_old_enough
     @pub2.sell_drink_to_customer(@drink2, @customer)
     assert_equal(2, @pub2.check_stock_level)
     assert_equal(403, @pub2.till)
     assert_equal(47, @customer.wallet)
   end
+
+  def test_do_not_sell_drink_to_customer_if_not_old_enough
+    @pub2.sell_drink_to_customer(@drink2, @customer3)
+    assert_equal(3, @pub2.check_stock_level)
+    assert_equal(400, @pub2.till)
+    assert_equal(10, @customer3.wallet)
+  end
+
+  # def test_do_not_sell_to_customer_with_over_10_drunkenness
+  #   drink = Drink.new("Tequila", 8, 11)
+  #   @pub2.sell_drink_to_customer(drink, @customer)
+  #
+  #   assert_equal(3, @pub2.check_stock_level)
+  #   assert_equal(400, @pub2.till)
+  #   assert_equal(10, @customer.wallet)
+  # end
 
 end

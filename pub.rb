@@ -31,7 +31,7 @@ class Pub
   end
 
   def sell_drink_to_customer(drink, customer)
-    if (check_for_drink(drink.name) && customer.can_afford_drink(drink))
+    if check_for_drink(drink.name) && customer.can_afford_drink(drink) && customer.age >= 18
       sell_drink(drink)
       increase_till_cash(drink)
       customer.pay_for_drink(drink)
