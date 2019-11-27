@@ -14,6 +14,10 @@ class Pub
     return @drinks.length
   end
 
+  def check_food_stock_level
+    return @food.length
+  end
+
   def check_for_drink(search_drink)
     for drink in @drinks
       if drink.name == search_drink
