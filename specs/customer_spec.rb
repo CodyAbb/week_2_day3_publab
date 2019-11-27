@@ -3,6 +3,7 @@ require('minitest/reporters')
 Minitest::Reporters.use! Minitest::Reporters::SpecReporter.new
 require_relative('../customer')
 
+
 class CustomerTest < Minitest::Test
 
   def setup
@@ -18,5 +19,5 @@ class CustomerTest < Minitest::Test
     assert_equal(50, @customer.wallet)
   end
 
-  
+
 end
