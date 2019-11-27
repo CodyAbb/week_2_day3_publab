@@ -45,11 +45,11 @@ class PubTest < Minitest::Test
   end
 
   def test_customer_can_afford_drink
-    assert_equal(true, @customer.can_afford_drink(@drink1))
+    assert_equal(true, @customer.can_afford_item(@drink1))
   end
 
   def test_customer_cannot_afford_drink
-    assert_equal(false, @customer2.can_afford_drink(@drink2))
+    assert_equal(false, @customer2.can_afford_item(@drink2))
   end
 
   def test_check_drink_removed
